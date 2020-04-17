@@ -1,0 +1,11 @@
+# 屏蔽词替换
+text = input('Please input: ')
+ltext = text.lower()
+with open('block.txt') as f:
+    lines = f.readlines()
+    for line in lines:
+        l = line.strip()
+        # print(l)
+        if l in ltext:
+            ltext = ltext.replace(l,'*'*len(l))
+    print(ltext)
