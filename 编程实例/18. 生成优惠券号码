@@ -16,10 +16,9 @@ while i <200:
 import string
 import random
 ab_list = list(string.ascii_letters)
-i = 0
-while i <200:
+for i in range(200):
     randomlist = random.choices(ab_list,k=8)      #randomly choose 8 letters to make a new list
     coupon = ''.join(randomlist)
     print(coupon)
-    i += 1
+    
    
