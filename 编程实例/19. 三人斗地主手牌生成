@@ -1,0 +1,28 @@
+
+
+import random
+card_num = ['A','2','3','4','5','6','7','8','9','10','J','Q','K']
+# suits = ['Heart','Spades','Club','Diamond']
+suits = ['\u2665','\u2660','\u2663','\u2666']
+cards = []
+for j in suits:
+    for k in card_num:
+        cards.append(j+k)
+cards.append('Red Joker')
+cards.append('Black Joker')                            #此时已经生成了一副牌
+random.shuffle(cards)                                  #洗牌 
+p1 = []
+p2 = []
+p3 = []
+hold = cards[-3:]
+for i in range(1,52):
+    if i % 3 == 0:
+        p3.append(cards[i-1])
+    if i % 3 == 1:
+        p1.append(cards[i-1])
+    if i % 3 == 2:
+        p2.append(cards[i-1])
+print('Player1:',p1)
+print('Player2:',p2)
+print('Player3',p3)
+print('Holder:',hold)
