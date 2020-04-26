@@ -1,1 +1,25 @@
+# Method 1: Using random.shuffle() to get a random alphabet list then choose 8 orderly
 
+import string
+import random
+ab_list = list(string.ascii_letters)      #making a list with all uppercase&lowercase of 26 letters
+i = 0
+while i <200:
+    random.shuffle(ab_list)               #making the 48 letters list randomly ordered
+    coupon = ''.join(ab_list[:8])         #choose first 8 letters to make a string
+    print(coupon)
+    i += 1
+    
+
+# Method 2: Using random.choices() to random choose 8 letters that make a new list
+
+import string
+import random
+ab_list = list(string.ascii_letters)
+i = 0
+while i <200:
+    randomlist = random.choices(ab_list,k=8)      #randomly choose 8 letters to make a new list
+    coupon = ''.join(randomlist)
+    print(coupon)
+    i += 1
+   
