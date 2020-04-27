@@ -1,0 +1,65 @@
+# 20.输入数字，如果平方运算后小于 50 则退出
+while True:
+    num = int(input('Please enter a number: '))
+    if num*num < 50:
+        print('The square of %d less than 50' %num)
+        break
+    else:
+        print('The square of %d is %d' %(num,num*num))
+
+
+#21.取一个整数a从右端开始的4〜7位
+a = input('Please enter a number: ')
+print(str(a)[-7:-3])
+
+
+# 22.print('look') 暂停一秒输出
+import time
+time.sleep(1)
+print('look')
+
+
+# 23.从控制台输入一段字符，统计字符'b'出现次数
+text = input('Please enter the text: ')
+count = 0
+for i in text:
+    if i == 'b':
+        count+=1
+print(count)
+
+
+# 24.从控制台输入一段字符，统计各字符出现次数
+
+text = input('Please enter the text: ')
+count_dic = {}
+count = 0
+for i in text:
+    if i not in count_dic:
+        count_dic[i] = 1
+    else:
+        count_dic[i] += 1
+for j,k in count_dic.items():
+    print('字符: %s, 出现次数: %d。' %(j,k))
+    
+#老师用字典get()的方法在遍历字符串时直接默认赋值给每个键0，然后加一次，如果key在字典里出现过，默认赋值0被忽略
+a = input('请输入一段字符\n')
+z = {}
+for i in a:
+    z[i] = z.get(i, 0) + 1
+for i in z:
+    print('字符：%s, 出现次数：%s。' % (i, z[i]))
+
+
+# 25.判断输入数字是否为质数
+
+while True:
+    num = int(input('Please enter a number: '))
+    if num > 1:
+        for i in range(2, num):
+            if num % i == 0:
+                print('It is not a prime number.')
+                break
+        else:
+            print('It is a prime number.')
+    else:
+        print('It is not a prime number.')
