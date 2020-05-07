@@ -1,0 +1,49 @@
+# 36.判断输入数字为奇数偶数
+num = int(input('Please enter a number: '))
+print('It is an even number') if num%2==0 else print('It is an odd number')
+
+# 37.创建一个新的 3 行 3 列的矩阵，使用 for 迭代并取出 X 和 Y 矩阵中对应位置的值，相加后放到新矩阵的对应位置中。
+X = [[12,7,3],
+      [4,5,6],
+      [7,8,9]]
+Y = [[5,8,1],
+     [6,7,3],
+     [4,5,9]]
+Z = [[],[],[]]
+
+for i in range(3):
+    for j in range(3):
+        Z[i].insert(j,X[i][j]+Y[i][j])
+print(Z)
+
+
+# 38.统计中英文
+# 分别统计出其中英文字母、空格、数字和其它字符的个数。
+sentense = input('Please enter: ')
+letter = 0
+space = 0
+number = 0
+other = 0
+for i in sentense:
+    if i.isalpha():
+        letter +=1
+    elif i.isdigit():
+        number +=1
+    elif i.isspace():
+        space +=1
+    else:
+        other+=1
+print('letter=%d,number=%d,space=%d,other=%d' %(letter,number,space,other))
+
+
+# 39.判断字符串是否为数字
+string = input('Please enter: ')
+print('It is a digit') if string.isdigit() else print('It is not a digit')
+
+
+# 40.移除字符串指定位置字符
+# Python 移除字符串中的指定位置字符,"Crossin 的编程教室"  中第八位空白符
+abc = "Crossin 的编程教室"
+labc = list(abc)
+labc.pop(7)
+print(''.join(labc))
