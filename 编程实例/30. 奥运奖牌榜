@@ -1,0 +1,43 @@
+class Medal:                                                    #定义类
+    def __init__(self, country, gold=0, silver=0, copper=0):    #初始化类的各项属性
+        self.country = country
+        self.gold = gold
+        self.silver = silver
+        self.copper = copper
+        # print(country, gold, silver, copper)
+
+    def get_place(self, rank):                      #定义增加奖牌的方法
+        if rank == 1:
+            self.gold += 1
+        if rank == 2:
+            self.silver += 1
+        if rank == 3:
+            self.copper += 1
+
+    def count(self):                                #定义计算总奖牌
+        return self.gold + self.silver + self.copper
+    
+    def __str__(self):                              #类的内置方法，用来输出信息
+        return f'{self.country}: Gold {self.gold}, Silver {self.silver}, Copper {self.copper}, Total {self.count()}'
+
+    
+a = Medal('China', 12,23,19)
+b = Medal('USA', 11,21,16)
+c = Medal('Russia', 10,28,21)
+a.get_place(1)
+b.get_place(2)
+c.get_place(3)
+print(a)
+print(b)
+print(c)
+
+medal_list = [a, b, c]
+gold_rank = sorted(medal_list, key = lambda x:x.gold, reverse = True)
+print('Rank by Gold:')
+for i in gold_rank:
+    print(i)
+
+total_rank = sorted(medal_list, key = lambda x:x.count(), reverse = True)
+print('Rank by total Medal:')
+for j in total_rank:
+    print(j)
