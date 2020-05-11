@@ -6,4 +6,48 @@ str1.replace('好','*')
 
 # 42.生成优惠卷
 # 请你帮他们设计并生成200个优惠券号码。优惠码的字符由26个英文字符（大小写）组成，每个优惠码有8位
-
+import string
+import random
+ab_list = list(string.ascii_letters)
+for i in range(10):
+    random.shuffle(ab_list)
+    coupon = ''.join(ab_list[:8])
+    print(coupon)
+    
+# 43.打印图形
+# 写一个输出矩形的函数，该函数拥有三个默认参数：
+# 矩形的长，默认值为 5
+# 矩形的宽，默认值为 5
+# 组成图形的符号，默认值为 *
+# 为函数添加不同的参数，输出三个不同类型的矩形
+def rectangle(length=5, width=5, symbol='*'):
+    for i in range(width):
+        for j in range(length):
+            print(symbol, end='')
+        print()
+        
+  
+# 44.正整数分解质因数
+# 【问题】将一个正整数分解质因数。例如：输入90,打印出90=2*3*3*5。
+# 【分析】对n进行分解质因数，应先找到一个最小的质数k，然后按下述步骤完成：
+# (1)如果这个质数恰等于n，则说明分解质因数的过程已经结束，打印出即可。
+# (2)如果n!=k，但n能被k整除，则应打印出k的值，并用n除以k的商,作为新的正整数n,重复执行第一步。
+# (3)如果n不能被k整除，则用k+1作为k的值,重复执行第一步。
+num = int(input('Please enter a number: '))
+print(f'{num} = ', end = '')
+if num == 1:
+    print (num)
+while num != 1:
+    for i in range(2,num+1):
+        if num%i == 0:
+            # prime_list.append(i)
+            num //= i
+            if num == 1:
+                print(i)
+            else:
+                print(f'{i} *', end = ' ')
+                
+              
+# 45.计算列表元素之和
+a = [2,4,1,2]
+print(sum(a))         #列表元素之和可直接用sum()函数
