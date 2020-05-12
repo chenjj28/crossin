@@ -58,4 +58,3 @@ for i in scores:                                        #遍历字典
 
 with open('game_many_user.txt', 'w') as f:
     f.writelines(result)                                #将记录写入文件
-
