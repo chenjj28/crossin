@@ -1,0 +1,6 @@
+crossin 3 2 11
+liubei 2 4 30
+guanyu 5 7 49
+zhangfei 3 3 33
+alice 7 3 32
+abc 3 4 15
