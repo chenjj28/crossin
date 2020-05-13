@@ -33,10 +33,6 @@ def guess_one():
 def guess_all(name, game_times, min_round, total_round):
     if game_times > 0:
         ave_round = total_round / game_times
-    else:
-        ave_round = 0
-
-    if game_times > 0:
         print('%s, you played %d times, used %d round minimal to guess the answer, used %.2f rounds on average'
               % (name, game_times, min_round, ave_round))
     else:
