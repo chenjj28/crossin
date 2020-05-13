@@ -1,15 +1,23 @@
 import requests
+import random
 
 #定义一次游戏的函数，返回本次游戏猜了几轮
 def guess_one():
     this_round = 0  # 每次游戏猜的轮数
-    url = 'https://python666.cn/cls/number/guess/'
-    r = requests.get(url)
-    num = int(r.text)
+    try:                                                            #尝试读取网络
+        r = requests.get('https://python666.cn/cls/number/guess/')
+        num = int(r.text)
+    except:                                                         #若网络异常则本地生成一个随机数
+        num = random.randint(1,100)
     bingo = False
     while bingo == False:
-        answer = int(input("Input a number between 1 to 100: "))
-        this_round += 1
+        try:  # 验证输入的是否为数字
+            answer = int(input("Guess a number between 1 to 100: "))
+        except:
+            print('Incorrect input. This round not accounted.')  # 输入错误不计入猜测轮数
+            continue
+
+        this_round += 1  # 确保输入正确后才计数
         if answer > num:
             print('Too big')
         elif answer < num:
@@ -28,8 +36,11 @@ def guess_all(name, game_times, min_round, total_round):
     else:
         ave_round = 0
 
-    print('%s, you played %d times, used %d round minimal to guess the answer, used %.2f rounds on average'
-          % (name, game_times, min_round, ave_round))
+    if game_times > 0:
+        print('%s, you played %d times, used %d round minimal to guess the answer, used %.2f rounds on average'
+              % (name, game_times, min_round, ave_round))
+    else:
+        print('You are a new player. Welcome to the game.')
 
     play = 'Y'
     while play == 'Y':
@@ -50,14 +61,19 @@ def guess_all(name, game_times, min_round, total_round):
 def main():
     name = input('Please enter your name: ')
 
-    with open('game_many_user.txt') as f:
-        lines = f.readlines()
+    try:                                    #尝试打开文件
+        with open('game.txt') as f:
+            lines = f.readlines()
+    except:                                 #若文件不存在则新建一个
+        with open('game.txt','x') as f:
+            lines = []                      #文件内容赋值为空列表防止之后出错
+
     scores = {}  # 新建一个空字典用来储存成绩
     for l in lines:
         record = l.split()  # 每一行的成绩按空格分隔并组成一个list
         scores[record[0]] = record[1:]  # 写入字典，名字作为key，成绩作为value
 
-    if scores.get(name) == None:
+    if scores.get(name) == None:            #该用户在文件中不存在
         scores[name] = [0, 0, 0]
     game_times = int(scores[name][0])  # 总游戏次数
     min_round = int(scores[name][1])  # 最快猜中轮数
@@ -71,7 +87,7 @@ def main():
         line = i + ' ' + ' '.join(scores[i]) + '\n'  # 将列表形式的value以join方法变成字符串并与key拼接
         result += line  # 将每一行的内容拼接成字符串
 
-    with open('game_many_user.txt', 'w') as f:
+    with open('game.txt', 'w') as f:
         f.writelines(result)  # 将记录写入文件
 
 #运行函数

@@ -37,9 +37,9 @@ while play == 'Y':
         this_round += 1
         if answer > num:
             print('Too big')
-        if answer < num:
+        elif answer < num:
             print('Too small')
-        if answer == num:
+        else:
             print('Bingo!')
             bingo = True
     total_round += this_round                           #每轮游戏用的轮数加入到总轮数中
